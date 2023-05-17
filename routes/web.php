@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/bring-it-on', function () {
+    return view('quiz/bring-it-on');
+});
+
+Route::get('/admin', function () {
+    return view('quiz.admin-screen', ['dummy_question' => Question::get()[1]]);
+});

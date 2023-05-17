@@ -1,0 +1,11 @@
+{
+    "type": "1",
+    "question": "What Netflix show had the most streaming views in 2021?",
+    "choices": {
+        "a": "Fate: The Wingx Saga",
+        "b": "Squid Game",
+        "c": "Pacific Rim: The Black",
+        "d": "The One and Only"
+    },
+    "timer": 30
+}
