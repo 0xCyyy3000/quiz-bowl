@@ -28,5 +28,5 @@ Route::get('/bring-it-on', function () {
 });
 
 Route::get('/admin', function () {
-    return view('quiz.admin-screen', ['dummy_question' => Question::get()[1]]);
+    return view('quiz.admin-screen', ['dummy_question' => Question::get()[0]]);
 });
