@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Category;
-use App\Models\Contestant;
 use App\Models\Mode;
+use App\Models\User;
+use App\Models\Category;
 use App\Models\Question;
+use App\Models\Contestant;
 use App\Models\QuestionType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -59,16 +61,50 @@ class DatabaseSeeder extends Seeder
             'mode'              => 1
         ]);
 
-        Contestant::create([
-            'name'      => 'Teach Chaka',
-            'status'    => true,
-            'code'      => '0x123'
+        Question::create([
+            'category_id'       => 1,
+            'question_type'     => 1,
+            'question'         => 'Which of the following is the what? Lol 😛',
+            'choices'           => json_encode([
+                'a' => 'Secret po',
+                'b' => 'Shesh',
+                'c' => 'Chill la kita',
+                'd' => 'Eyyyy',
+            ]),
+            'correct_answer'   => 'd',
+            'mode'              => 1
+        ]);
+
+        User::create([
+            'name' => 'cy pogi',
+            'email' => 'cy@pogi.com',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+        User::create([
+            'name' => 'Team Chaka',
+            'email' => 'one@team.com',
+            'password' => Hash::make('asdfasdf'),
+        ]);
+
+        User::create([
+            'name' => 'Team Pogi',
+            'email' => 'two@team.com',
+            'password' => Hash::make('asdfasdf'),
         ]);
 
         Contestant::create([
-            'name'      => 'Teach Pogi',
+            'name'      => 'Team Chaka',
             'status'    => true,
-            'code'      => '0x321'
+            'code'      => '0x123',
+            'user_id'   => 1
+        ]);
+
+        Contestant::create([
+            'name'      => 'Team Pogi',
+            'status'    => true,
+            'code'      => '0x321',
+            'user_id'   => 2
         ]);
     }
 }

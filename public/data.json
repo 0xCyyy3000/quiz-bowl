@@ -1,6 +1,12 @@
 {
-    "type": "2",
-    "question": "What constellation can be seen form the North Pole?",
-    "choices": {},
-    "timer": 60
+    "type": "1",
+    "question": "Which of the following is the what? Lol \ud83d\ude1b",
+    "choices": {
+        "a": "Secret po",
+        "b": "Shesh",
+        "c": "Chill la kita",
+        "d": "Eyyyy"
+    },
+    "timer": 30,
+    "answer": "d"
 }
