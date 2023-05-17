@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuestionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+// Questions
+Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
+Route::post('/questions', [QuestionsController::class, 'store'])->name('addquestions');
+Route::put('/questions/{id}', [QuestionsController::class, 'update'])->name('questions.update');
+Route::get('/questions/{id}', [QuestionsController::class, 'destroy'])->name('questions.destroy');
