@@ -16,6 +16,7 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <a href="{{ route('questions.index') }}" type="button" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>

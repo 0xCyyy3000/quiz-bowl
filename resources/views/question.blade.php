@@ -20,7 +20,7 @@
                                 <tr>
                                     <td>{{ $questions->questions }}</td>
                                     <td>
-                                        <a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal{{$questions->id}}">Update</a>
+                                        <a href="#" type="button" class="btn btn-primary updateQuest" data-bs-toggle="modal" data-id="{{$questions->id}}" data-bs-question="{{ $questions->questions }}" data-bs-target="#updateModal">Update</a>
                                         <a href="{{ route('questions.destroy', $questions->id) }}" type="button" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
@@ -69,7 +69,7 @@
 
 
 
-<div class="modal fade" id="updateModal{{$questions->id}}" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
   <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,12 +78,13 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <form action="{{ route('questions.update', $questions->id) }}" method="POST">
+                    <form action="{{ route('questions.update') }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <input class="form-control" id="u_id" name="id" value="" hidden>
                         <div class="mb-3">
                             <label for="questions" class="form-label">Add Question</label>
-                            <input class="form-control" id="question"  id="questions{{ $questions->id }}" name="questions" value="{{ $questions->questions }}" aria-describedby="emailHelp">
+                            <input class="form-control" id="u_questions" name="questions" value="">
                         </div>
 
                         <div class="modal-footer">
@@ -98,3 +99,13 @@
 </div> 
 
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).on('click', '.updateQuest', function() {
+    var questionId = $(this).data('id');
+    var questionText = $(this).closest('tr').find('td:first').text();
+    $("#u_id").val(questionId);
+    $("#u_questions").val(questionText);
+});
+</script>

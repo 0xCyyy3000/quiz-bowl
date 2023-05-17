@@ -28,5 +28,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Questions
 Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
 Route::post('/questions', [QuestionsController::class, 'store'])->name('addquestions');
-Route::put('/questions/{id}', [QuestionsController::class, 'update'])->name('questions.update');
+Route::put('/questions/update', [QuestionsController::class, 'update'])->name('questions.update');
 Route::get('/questions/{id}', [QuestionsController::class, 'destroy'])->name('questions.destroy');

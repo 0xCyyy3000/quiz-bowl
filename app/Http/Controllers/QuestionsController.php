@@ -24,12 +24,17 @@ class QuestionsController extends Controller
         return redirect('/questions');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $questions = Questions::findOrFail($id);
-        $questions->questions = $request->input('questions');
-        $questions->save();
 
+        // return dd($request);
+       $update=[
+        'id' =>$request->id,
+        'questions' =>$request->questions,
+       ];
+
+       Questions::where('id', $request->id)->update($update);
+    //    return dd($update);
         return redirect('/questions');
     }
     
