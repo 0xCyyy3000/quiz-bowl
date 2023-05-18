@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('contestants', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('status'); // Active for True and Inactivate for False
-            $table->string('code');
+            $table->boolean('status')->default(true); // Active for True and Inactivate for False
             $table->timestamps();
         });
     }

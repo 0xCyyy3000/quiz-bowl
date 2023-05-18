@@ -1,12 +1,12 @@
 {
     "type": "1",
-    "question": "Which of the following is the what? Lol \ud83d\ude1b",
+    "question": "What Netflix show had the most streaming views in 2021?",
     "choices": {
-        "a": "Secret po",
-        "b": "Shesh",
-        "c": "Chill la kita",
-        "d": "Eyyyy"
+        "a": "Fate: The Wingx Saga",
+        "b": "Squid Game",
+        "c": "Pacific Rim: The Black",
+        "d": "The One and Only"
     },
-    "timer": 30,
-    "answer": "d"
+    "answer": "B",
+    "timer": 30
 }

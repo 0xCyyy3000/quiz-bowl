@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('question_type')->constrianed('question_types')->default(1); // Multiple choices for 1, True/False for 2, and Short answer for 3
+            $table->foreignId('type_id')->constrianed('question_types')->default(1); // Multiple choices for 1, True/False for 2, and Short answer for 3
             $table->longText('question');
             $table->json('choices');
             $table->string('correct_answer');

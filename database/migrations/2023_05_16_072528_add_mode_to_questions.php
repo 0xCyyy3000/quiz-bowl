@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->foreignId('mode')->constrained('modes');
+            $table->foreignId('mode_id')->constrained('modes');
         });
     }
 

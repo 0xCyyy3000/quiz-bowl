@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuestionTypeController;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,17 +18,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('bring-it-on');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/bring-it-on', function () {
     return view('quiz/bring-it-on');
-});
+})->middleware('auth');
 
 Route::get('/admin', function () {
-    return view('quiz.admin-screen', ['dummy_question' => Question::get()[2]]);
-});
+    if (Auth::user()->role != 100) {
+        abort(403);
+    }
+    return view('quiz.admin-screen');
+})->middleware('auth')->name('quiz.home');
+
+Route::get('/admin/manage-questions', function () {
+    return view('quiz.manage');
+})->middleware('auth')->name('quiz.manage');
+
+Route::get('/admin/quiz/create', [QuestionController::class, 'create'])->middleware('auth')->name('quiz.create');
+Route::post('/admin/quiz/store', [QuestionController::class, 'store'])->middleware('auth')->name('quiz.store');
+Route::get('/admin/quiz/{id}', [QuestionController::class, 'select'])->middleware('auth')->name('quiz.select');
+Route::post('/admin/question/update/{id}', [QuestionController::class, 'update'])->middleware('auth')->name('quiz.select.update');

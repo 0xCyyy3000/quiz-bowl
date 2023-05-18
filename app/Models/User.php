@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function countScore()
+    {
+        return RoundSummary::where('contestant', $this->asContestant()->id)->sum('round_status');
+    }
+
+    public function contestant()
+    {
+        return $this->hasOne(Contestant::class);
+    }
+
+    public function asContestant()
+    {
+        return $this->role != 100 ? Contestant::where('user_id', $this->id)->first() : $this;
+    }
 }

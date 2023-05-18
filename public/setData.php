@@ -2,13 +2,13 @@
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-if ($action == 'seeResult') {
+if ($action == 'time') {
     // Setting up the Trigger signal for new Question Display
     $trigger_path = './trigger.json';
     $trigger_file = fopen($trigger_path, 'w');
 
     try {
-        fwrite($trigger_file, json_encode(['value' => 'reveal'], JSON_PRETTY_PRINT));
+        fwrite($trigger_file, json_encode(['value' => 'time'], JSON_PRETTY_PRINT));
         fclose($trigger_file);
     } catch (\Throwable $th) {
         echo 'Error';

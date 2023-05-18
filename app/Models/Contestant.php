@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Contestant extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'status', 'user_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

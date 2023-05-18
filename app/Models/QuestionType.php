@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionType extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['type'];
+
+    public function question()
+    {
+        return $this->hasOne(Question::class);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContestantController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RoundSummaryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/generate/question', [QuestionController::class, 'getRandom']);
+
+Route::get('/setData', [QuestionController::class, 'index']);
 
 Route::get('/contestant/save-answer', [ContestantController::class, 'saveAnswer']);
 Route::get('/admin/result', [RoundSummaryController::class, 'index']);

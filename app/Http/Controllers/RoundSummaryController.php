@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contestant;
 use App\Models\RoundSummary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class RoundSummaryController extends Controller
 {
@@ -19,12 +20,17 @@ class RoundSummaryController extends Controller
             array_push(
                 $summary,
                 [
-                    'name'  => $contestant->name,
+                    'name'  => $contestant->user->name,
                     'score' => $contestant->score,
                 ]
             );
         }
+        // Setting up the Trigger
+        isset($request->action) ? '' : File::put(public_path('' . 'trigger.json'), json_encode(['value' => 'summary'], JSON_PRETTY_PRINT));
 
-        return response()->json(['summary' => $summary]);
+        // Soring the Summary Score
+        usort($summary, fn ($a, $b) => $b['score'] <=> $a['score']);
+        File::put(public_path('' . 'ranking.json'), json_encode($summary, JSON_PRETTY_PRINT));
+        return response()->json($summary);
     }
 }
